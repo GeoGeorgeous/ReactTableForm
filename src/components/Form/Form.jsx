@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import Button from '../Button/Button';
 import './Form.sass';
 
 function Form() {
@@ -172,6 +174,13 @@ function Form() {
           </label>
         </fieldset>
       </form>
+
+      <Button
+        icon='submit-form'
+        iconOnHover='true'
+        text='Add to Table'
+        isSubmitBtn='true'
+      />
     </div>
   );
 }

@@ -1,0 +1,43 @@
+// import vars from App.sass 
+@import '../App/App.sass' 
+
+.btn
+  border: none
+  display: flex
+  flex-flow: column
+  justify-content: center
+  padding: 22px 20px 20px 48px
+  height: 44px
+  border-radius: 15px
+  font-family: 'Roboto'
+  font-style: normal
+  font-weight: 400
+  font-size: 14px
+  line-height: 16px
+  color: #000000
+  background-color: $light-purple
+  background-repeat: no-repeat
+  transition: .1s ease-out
+  transition-property: background-color, color, background-image, padding
+  cursor: pointer
+  &:hover
+    background-color: $purple
+    color: #fff
+
+.btn__icon_submit-form
+  margin: 0 auto
+  background-position: 15px center
+  background-image: url('../../assets/images/submit-form.svg')
+  grid-column: 1 / span 3
+  &:hover
+    background-image: url('../../assets/images/submit-form_w.svg')
+
+// .btn__icon_onhover
+//     padding: 22px 20px 20px
+//     background-image: none
+//     &:hover.btn__icon_runningman
+//       padding: 22px 20px 20px 35px
+//       background-size: 14px 14px
+//       background-image: url('../../assets/images/runningman.svg')
+
+
