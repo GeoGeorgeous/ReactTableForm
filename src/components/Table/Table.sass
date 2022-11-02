@@ -2,10 +2,79 @@
 @import '../App/App.sass' 
   
 .table
-  height: 720px
-  width: 440px
-  background-color: $white
-  transition: outline .15s ease-out
-  outline-color: $light-purple
-  &:hover
-    outline: 4px solid $light-purple
+  padding-left: 4px
+  padding-right: 4px
+  overflow-x: auto  
+
+  &__table-data
+    border-collapse: separate
+    border-spacing: 0 10px
+    margin-top: -10px
+    text-align: left
+
+  &__item
+    background-color: $white
+    padding: 10px
+    transition: outline .15s ease-out
+    outline-color: $light-purple
+    border-radius: 25px
+    &:hover
+      outline: 4px solid $light-purple
+
+  &__title
+    font-family: 'Roboto'
+    font-style: normal
+    font-weight: 400
+    font-size: 20px
+    margin: 40px 0 25px 0
+    line-height: 24px
+    color: $purple
+    padding-left: 30px
+    background-image: url('../../assets/images/users.svg')
+    background-repeat: no-repeat
+    background-position: left center 
+
+  &__header
+    font-family: 'Roboto'
+    font-style: normal
+    font-weight: 500
+    font-size: 16px
+    line-height: 16px
+    color: $purple
+
+  &__remove-button-cell
+    text-align: right
+
+  &__remove-button
+    background-image: url('../../assets/images/trash.svg')
+    background-position: center center
+    background-repeat: no-repeat
+    width: 24px
+    height: 24px
+    border: none
+    padding: 0
+    background-color: inherit
+    cursor: pointer
+    opacity: .75
+    &:hover
+      opacity: 1
+
+td, th
+  padding: 15px 25px 15px 25px
+  white-space: nowrap
+
+td
+    border-style: 1px solid $white
+    background-color: $white
+
+td
+  &:first-child
+    border-left-style: 1px solid $white
+    border-top-left-radius: 25px
+    border-bottom-left-radius: 25px
+
+td
+  &:last-child 
+    border-right-style: 1px solid $white
+    border-bottom-right-radius: 25px
+    border-top-right-radius: 25px
