@@ -23,7 +23,8 @@ module.exports = {
         test: /\.(sass|scss|css)$/,
         exclude: /node_modules/,
         use: [
-          'style-loader', {
+          'style-loader',
+          {
             loader: 'css-loader',
             options: {
               modules: false,
@@ -44,7 +45,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      title: 'urDay — ur habits journal',
+      title: 'React Table Form with JSON Export',
       publicPath: './',
       favicon: './favicon.ico',
       template: path.resolve(__dirname, './src/template.html'),
