@@ -1,9 +1,37 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../Button/Button';
 import './Form.sass';
 
-function Form() {
+function Form({ createNewItem, removeItem }) {
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [age, setAge] = useState('');
+  const [email, setEmail] = useState('');
+  const [color, setColor] = useState('');
+  const [contact, setContact] = useState([]);
+
+  const handleCheckBox = (e) => {
+    const { value } = e.target;
+    if (e.target.checked) {
+      setContact([...contact, value]);
+    } else {
+      setContact(contact.filter((a) => a !== value));
+    }
+  };
+
+  const handleSubmit = () => {
+    const newItem = {
+      name,
+      surname,
+      age,
+      email,
+      color,
+      contact,
+    };
+    createNewItem(newItem);
+  };
+
   return (
     <div className='form'>
       <h3 className='form__title'>Add new Person</h3>
@@ -17,6 +45,7 @@ function Form() {
             maxLength='120'
             required
             placeholder='John'
+            onChange={(e) => setName(e.target.value)}
           />
         </label>
         <label className='form__label'>
@@ -28,6 +57,7 @@ function Form() {
             maxLength='120'
             required
             placeholder='Doe'
+            onChange={(e) => setSurname(e.target.value)}
           />
         </label>
         <label className='form__label'>
@@ -40,6 +70,7 @@ function Form() {
             required
             type='number'
             placeholder='27'
+            onChange={(e) => setAge(e.target.value)}
           />
         </label>
         <label
@@ -53,6 +84,7 @@ function Form() {
             required
             type='email'
             placeholder='email@email.com'
+            onChange={(e) => setEmail(e.target.value)}
           />
         </label>
         <fieldset className='form__fieldset'>
@@ -64,6 +96,7 @@ function Form() {
             className='form__radio-input'
             type='radio'
             value='red'
+            onChange={(e) => setColor(e.target.value)}
           />
           <label
             className='form__radio-label'
@@ -78,6 +111,7 @@ function Form() {
             type='radio'
             id='green'
             value='green'
+            onChange={(e) => setColor(e.target.value)}
           />
           <label
             className='form__radio-label'
@@ -92,6 +126,7 @@ function Form() {
             type='radio'
             value='blue'
             id='blue'
+            onChange={(e) => setColor(e.target.value)}
           />
           <label
             className='form__radio-label'
@@ -106,6 +141,7 @@ function Form() {
             type='radio'
             value='white'
             id='white'
+            onChange={(e) => setColor(e.target.value)}
           />
           <label
             className='form__radio-label'
@@ -120,6 +156,7 @@ function Form() {
             type='radio'
             id='black'
             value='black'
+            onChange={(e) => setColor(e.target.value)}
           />
           <label
             className='form__radio-label'
@@ -137,6 +174,7 @@ function Form() {
             className='form__radio-input'
             type='checkbox'
             value='phone'
+            onChange={(e) => handleCheckBox(e)}
           />
           <label
             className='form__radio-label'
@@ -151,6 +189,7 @@ function Form() {
             type='checkbox'
             id='email'
             value='email'
+            onChange={(e) => handleCheckBox(e)}
           />
           <label
             className='form__radio-label'
@@ -165,6 +204,7 @@ function Form() {
             type='checkbox'
             value='SMS'
             id='SMS'
+            onChange={(e) => handleCheckBox(e)}
           />
           <label
             className='form__radio-label'
@@ -180,6 +220,7 @@ function Form() {
         iconOnHover='true'
         text='Add to Table'
         isSubmitBtn='true'
+        onClick={handleSubmit}
       />
     </div>
   );

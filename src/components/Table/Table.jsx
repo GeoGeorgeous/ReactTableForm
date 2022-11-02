@@ -1,9 +1,30 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import Button from '../Button/Button';
 import './Table.sass';
 
-function Table() {
+function Table({ data, exportCallback, removeItem }) {
+  function mapData() {
+    return data.map((i) => (
+      <tr className='table__item'>
+        <td>{i.name}</td>
+        <td>{i.surname}</td>
+        <td>{i.email}</td>
+        <td>{i.age}</td>
+        <td>{i.color}</td>
+        <td>{i.contact.join(', ')}</td>
+        <td className='table__remove-button-cell'>
+          <button
+            type='button'
+            className='table__remove-button'
+            onClick={() => removeItem(i)}
+          />
+        </td>
+      </tr>
+    ));
+  }
+
   return (
     <div className='table'>
       <h3 className='table__title'>Candidates</h3>
@@ -22,41 +43,14 @@ function Table() {
                 iconOnHover='true'
                 text='Export JSON'
                 isSubmitBtn='true'
+                onClick={exportCallback}
               />
             </th>
           </tr>
         </thead>
-        <tbody>
-          <tr className='table__item'>
-            <td>Georgii</td>
-            <td>Gorchev</td>
-            <td>georgegorchev@yandex.com</td>
-            <td>26</td>
-            <td>Black</td>
-            <td>Email, SMS</td>
-            <td className='table__remove-button-cell'>
-              <button
-                type='button'
-                className='table__remove-button'
-              />
-            </td>
-          </tr>
-          <tr className='table__item'>
-            <td>Kirill</td>
-            <td>Feduykov</td>
-            <td>kirill@yandex.com</td>
-            <td>25</td>
-            <td>White</td>
-            <td>Phone Call, Email, SMS</td>
-            <td className='table__remove-button-cell'>
-              <button
-                type='button'
-                className='table__remove-button'
-              />
-            </td>
-          </tr>
-        </tbody>
+        <tbody>{data.length > 0 && mapData()}</tbody>
       </table>
+      {data.length <= 0 && <p className='table__no-data'>🚫 No Data</p>}
     </div>
   );
 }
