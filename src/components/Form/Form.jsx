@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../Button/Button';
 import './Form.sass';
 
@@ -10,6 +10,7 @@ function Form({ createNewItem }) {
   const [email, setEmail] = useState('');
   const [color, setColor] = useState('');
   const [contact, setContact] = useState([]);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const handleCheckBox = (e) => {
     const { value } = e.target;
@@ -41,6 +42,23 @@ function Form({ createNewItem }) {
     setContact([]);
   };
 
+  useEffect(() => {
+    // Array of all form inputs
+    const formInputs = [].slice.call(document.querySelector('#form').elements);
+    // Form is invalid by default
+    let isFormValid = false;
+    // Checkbox must be choosen
+    const isCheckboxValid = contact.length > 0;
+    // Check if all is valid
+    isFormValid = formInputs.every((input) => input.validity.valid);
+    // toggle the button depending on the validity of the form
+    if (isFormValid && isCheckboxValid) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [name, surname, age, email, color, contact]);
+
   return (
     <div className='form'>
       <h3 className='form__title'>Add new Person</h3>
@@ -57,7 +75,6 @@ function Form({ createNewItem }) {
             maxLength='120'
             required
             placeholder='John'
-            value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </label>
@@ -108,7 +125,7 @@ function Form({ createNewItem }) {
             id='red'
             className='form__radio-input'
             type='radio'
-            value='red'
+            value='Red'
             onChange={(e) => setColor(e.target.value)}
           />
           <label
@@ -123,7 +140,7 @@ function Form({ createNewItem }) {
             className='form__radio-input'
             type='radio'
             id='green'
-            value='green'
+            value='Green'
             onChange={(e) => setColor(e.target.value)}
           />
           <label
@@ -137,7 +154,7 @@ function Form({ createNewItem }) {
             name='color'
             className='form__radio-input'
             type='radio'
-            value='blue'
+            value='Blue'
             id='blue'
             onChange={(e) => setColor(e.target.value)}
           />
@@ -152,7 +169,7 @@ function Form({ createNewItem }) {
             name='color'
             className='form__radio-input'
             type='radio'
-            value='white'
+            value='White'
             id='white'
             onChange={(e) => setColor(e.target.value)}
           />
@@ -168,7 +185,7 @@ function Form({ createNewItem }) {
             className='form__radio-input'
             type='radio'
             id='black'
-            value='black'
+            value='Black'
             onChange={(e) => setColor(e.target.value)}
           />
           <label
@@ -186,7 +203,7 @@ function Form({ createNewItem }) {
             id='phone'
             className='form__radio-input'
             type='checkbox'
-            value='phone'
+            value='Phone Call'
             onChange={(e) => handleCheckBox(e)}
           />
           <label
@@ -201,7 +218,7 @@ function Form({ createNewItem }) {
             className='form__radio-input'
             type='checkbox'
             id='email'
-            value='email'
+            value='Email'
             onChange={(e) => handleCheckBox(e)}
           />
           <label
@@ -234,6 +251,7 @@ function Form({ createNewItem }) {
         text='Add to Table'
         isSubmitBtn='true'
         onClick={handleSubmit}
+        disabled={buttonDisabled}
       />
     </div>
   );

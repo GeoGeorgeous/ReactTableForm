@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import '../App/App.sass';
 import './Button.sass';
 
-function Button({ icon, iconOnHover, text, isSubmitBtn, onClick }) {
+function Button({ icon, iconOnHover, text, isSubmitBtn, onClick, disabled }) {
   return (
     <button
+      disabled={disabled}
       className={`btn btn__icon_${icon} ${
         iconOnHover ? 'btn__icon_onhover' : ''
       } `}
