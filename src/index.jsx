@@ -11,8 +11,7 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <p>text</p>
-    {/* <App /> */}
+    <App />
   </React.StrictMode>
 );
 

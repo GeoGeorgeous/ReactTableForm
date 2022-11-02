@@ -1,0 +1,132 @@
+// import vars from App.sass 
+@import '../App/App.sass' 
+  
+.form
+  height: 420px
+  width: 320px
+  background-color: $white
+  transition: outline .15s ease-out
+  outline-color: $light-purple
+  border-radius: 25px
+  padding: 25px
+  &:hover
+    outline: 4px solid $light-purple
+
+  &__title
+    font-family: 'Roboto'
+    font-style: normal
+    font-weight: 400
+    font-size: 20px
+    margin: 10px 0 25px 0
+    line-height: 24px
+    color: $purple
+    padding-left: 30px
+    background-image: url('../../assets/images/user-add.svg')
+    background-repeat: no-repeat
+    background-position: left center 
+
+  &__form
+    display: grid
+    grid-template-columns: 4fr 4fr 2fr
+    gap: 20px 5px
+
+  &__label
+    font-size: 12px
+    color: $light-purple-text
+    transition: .1s ease-out
+    transition-property: visibility, color
+    opacity: 1
+    &:hover
+      color: $purple
+    &:focus-within
+      color: $purple
+    &[for='custom-email'] 
+      grid-column: 1 / span 3
+
+  &__radio-label
+    cursor: pointer
+    display: inline-block
+    height: 25px
+    font-style: normal
+    font-weight: 400
+    padding: 0
+    margin: 0
+    font-size: 18px
+    line-height: 1.2
+    color: $light-purple-text
+    border: none
+    outline: none
+    transition: .1s ease-out
+    transition-property: border-bottom, opacity, color
+    caret-color: $purple
+    border-bottom: 4px $light-purple solid
+    margin-right: 15px
+    &:hover
+      color: $purple
+      border-bottom: 4px $purple solid
+
+  &__legend
+    font-size: 12px
+    margin-bottom: 10px
+    color: $light-purple-text
+    transition: .1s ease-out
+    transition-property: visibility, color
+    opacity: 1
+    &:hover
+      color: $purple
+    &:focus-within
+      color: $purple
+
+  &__input
+    height: 38px
+    width: 100%
+    font-style: normal
+    font-weight: 400
+    padding: 0
+    margin: 0
+    font-size: 21px
+    line-height: 25px
+    color: #000000
+    border: none
+    outline: none
+    transition: .1s ease-out
+    transition-property: border-bottom, opacity, color
+    caret-color: $purple
+    border-bottom: 4px $light-purple solid
+    visibility: visible
+    opacity: 1
+    &:hover
+      border-bottom: 4px $purple solid
+    &:focus
+      border-bottom: 4px $purple solid
+      opacity: 1
+    &::placeholder
+      color: $light-purple-text
+    &:placeholder-shown
+      border-bottom: 4px $light-purple solid
+      &:hover
+        border-bottom: 4px $purple solid
+    &:valid
+      border-bottom: 4px $purple solid
+    &:not(&:placeholder-shown)    
+      &:invalid
+        border-bottom: 4px #9D4A59 solid
+
+  &__radio-input
+    appearance: none
+    display: block
+    &:checked
+      + .form__radio-label
+        border-bottom: 4px $purple solid
+        color: #000
+
+  &__fieldset
+    margin: 0
+    padding: 0
+    border: none
+    display: flex
+    grid-column: 1 / span 3
+    &:hover .form__legend
+      color: $purple
+      
+    
