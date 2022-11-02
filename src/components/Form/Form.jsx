@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import Button from '../Button/Button';
 import './Form.sass';
 
-function Form({ createNewItem, removeItem }) {
+function Form({ createNewItem }) {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
-  const [age, setAge] = useState('');
+  const [age, setAge] = useState(0);
   const [email, setEmail] = useState('');
   const [color, setColor] = useState('');
   const [contact, setContact] = useState([]);
@@ -30,12 +30,24 @@ function Form({ createNewItem, removeItem }) {
       contact,
     };
     createNewItem(newItem);
+    // clean Form
+    document.querySelector('#form').reset();
+    // clean states
+    setName('');
+    setSurname('');
+    setAge(0);
+    setEmail('');
+    setColor('');
+    setContact([]);
   };
 
   return (
     <div className='form'>
       <h3 className='form__title'>Add new Person</h3>
-      <form className='form__form'>
+      <form
+        className='form__form'
+        id='form'
+      >
         <label className='form__label'>
           Name
           <input
@@ -45,6 +57,7 @@ function Form({ createNewItem, removeItem }) {
             maxLength='120'
             required
             placeholder='John'
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </label>
