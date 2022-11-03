@@ -43,9 +43,9 @@ function Popup({
               </h3>
               <Button
                 icon='delete'
-                iconOnHover='true'
+                iconOnHover
                 text='Delete'
-                isSubmitBtn='false'
+                isSubmitBtn={false}
                 onClick={handleDelete}
                 disabled={false}
               />
