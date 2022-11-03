@@ -7,7 +7,10 @@ import './Table.sass';
 function Table({ data, exportCallback, removeItem }) {
   function mapData() {
     return data.map((i) => (
-      <tr className='table__item'>
+      <tr
+        className='table__item'
+        key={Math.random()}
+      >
         <td>{i.name}</td>
         <td>{i.surname}</td>
         <td>{i.email}</td>
@@ -40,9 +43,9 @@ function Table({ data, exportCallback, removeItem }) {
             <th>
               <Button
                 icon='export'
-                iconOnHover='true'
+                iconOnHover
                 text='Export JSON'
-                isSubmitBtn='true'
+                isSubmitBtn
                 onClick={exportCallback}
               />
             </th>

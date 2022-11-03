@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import './Form.sass';
 
 function Form({ createNewItem }) {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
-  const [age, setAge] = useState(0);
+  const [age, setAge] = useState();
   const [email, setEmail] = useState('');
   const [color, setColor] = useState('');
   const [contact, setContact] = useState([]);
@@ -21,7 +22,8 @@ function Form({ createNewItem }) {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const newItem = {
       name,
       surname,
@@ -36,7 +38,7 @@ function Form({ createNewItem }) {
     // clean states
     setName('');
     setSurname('');
-    setAge(0);
+    setAge();
     setEmail('');
     setColor('');
     setContact([]);
@@ -75,6 +77,7 @@ function Form({ createNewItem }) {
             maxLength='120'
             required
             placeholder='John'
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </label>
@@ -87,19 +90,21 @@ function Form({ createNewItem }) {
             maxLength='120'
             required
             placeholder='Doe'
+            value={surname}
             onChange={(e) => setSurname(e.target.value)}
           />
         </label>
         <label className='form__label'>
           Age
           <input
-            min='18'
-            max='130'
+            min='1'
+            max='120'
             maxLength='3'
             className='form__input'
             required
             type='number'
             placeholder='27'
+            value={age || ''}
             onChange={(e) => setAge(e.target.value)}
           />
         </label>
@@ -114,6 +119,7 @@ function Form({ createNewItem }) {
             required
             type='email'
             placeholder='email@email.com'
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
@@ -204,6 +210,7 @@ function Form({ createNewItem }) {
             className='form__radio-input'
             type='checkbox'
             value='Phone Call'
+            checked={contact.includes('Phone Call')}
             onChange={(e) => handleCheckBox(e)}
           />
           <label
@@ -219,6 +226,7 @@ function Form({ createNewItem }) {
             type='checkbox'
             id='email'
             value='Email'
+            checked={contact.includes('Email')}
             onChange={(e) => handleCheckBox(e)}
           />
           <label
@@ -234,6 +242,7 @@ function Form({ createNewItem }) {
             type='checkbox'
             value='SMS'
             id='SMS'
+            checked={contact.includes('SMS')}
             onChange={(e) => handleCheckBox(e)}
           />
           <label
@@ -247,14 +256,18 @@ function Form({ createNewItem }) {
 
       <Button
         icon='submit-form'
-        iconOnHover='true'
+        iconOnHover
         text='Add to Table'
-        isSubmitBtn='true'
+        isSubmitBtn
         onClick={handleSubmit}
         disabled={buttonDisabled}
       />
     </div>
   );
 }
+
+Form.propTypes = {
+  createNewItem: PropTypes.func.isRequired,
+};
 
 export default Form;
