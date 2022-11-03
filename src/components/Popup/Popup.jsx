@@ -25,7 +25,9 @@ function Popup({
               <h3 className='popup__title'>JSON Export</h3>
               <div className='popup__content'>
                 <pre className='popup__code'>
-                  {JSON.stringify(data, null, 2)}
+                  {data.length
+                    ? JSON.stringify(data, null, 2)
+                    : 'Empty array. No data found in the table.'}
                 </pre>
               </div>
             </>
