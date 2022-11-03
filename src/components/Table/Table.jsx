@@ -31,28 +31,30 @@ function Table({ data, exportCallback, removeItem }) {
   return (
     <div className='table'>
       <h3 className='table__title'>Candidates</h3>
-      <table className='table__table-data'>
-        <thead>
-          <tr>
-            <th className='table__header'>Name</th>
-            <th className='table__header'>Surname</th>
-            <th className='table__header'>Email</th>
-            <th className='table__header'>Age</th>
-            <th className='table__header'>Color</th>
-            <th className='table__header'>Contact preference</th>
-            <th>
-              <Button
-                icon='export'
-                iconOnHover
-                text='Export JSON'
-                isSubmitBtn
-                onClick={exportCallback}
-              />
-            </th>
-          </tr>
-        </thead>
-        <tbody>{data.length > 0 && mapData()}</tbody>
-      </table>
+      {data.length > 0 && (
+        <table className='table__table-data'>
+          <thead>
+            <tr>
+              <th className='table__header'>Name</th>
+              <th className='table__header'>Surname</th>
+              <th className='table__header'>Email</th>
+              <th className='table__header'>Age</th>
+              <th className='table__header'>Color</th>
+              <th className='table__header'>Contact preference</th>
+              <th>
+                <Button
+                  icon='export'
+                  iconOnHover
+                  text='Export JSON'
+                  isSubmitBtn
+                  onClick={exportCallback}
+                />
+              </th>
+            </tr>
+          </thead>
+          <tbody>{data.length > 0 && mapData()}</tbody>
+        </table>
+      )}
       {data.length <= 0 && <p className='table__no-data'>🚫 No Data</p>}
     </div>
   );
